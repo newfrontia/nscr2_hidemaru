@@ -7,6 +7,7 @@
 gitbucketを選んだのは改版のやりやすさもあるのですが、Wiki等で情報をまとめれるのがよかったからです。
 
 秀丸の公式さんのライブラリへの登録はもうちょっと品質というか、ある程度の評価が終わってから。。。
+お問い合わせはNewfrontiaSoftwareのメールフォームからどうぞ
 
 ## Usage
 秀丸エディタの単語補完機能で利用します。
@@ -26,6 +27,6 @@ gitbucketを選んだのは改版のやりやすさもあるのですが、Wiki�
 その他の関連ツール（秀丸、NScripter2）に関しては各ソフトウェアのライセンスとなりますので、各自そちらをご参照ください。
 
 ## Author
-NewfrontiaSoftware
+NewfrontiaSoftware(http://newfrontia.web.fc2.com/)
 Takeru Shirogane(newfrontia@hotmail.com)
 

@@ -28,5 +28,4 @@ gitbucketを選んだのは改版のやりやすさもあるのですが、Wiki�
 
 ## Author
 NewfrontiaSoftware(http://newfrontia.web.fc2.com/)  
-Takeru Shirogane(newfrontia@hotmail.com)  
 

@@ -11,7 +11,7 @@ gitbucketを選んだのは改版のやりやすさもあるのですが、Wiki�
 
 ## Usage
 秀丸エディタの単語補完機能で利用します。  
-使い方は柿を参考にしてください。  
+使い方は下記を参考にしてください。  
 <http://hide.maruo.co.jp/software/hidemaru7/new1.html>  
   
 基本的にはtxtに関連付けすればOKです。  

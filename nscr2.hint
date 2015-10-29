@@ -1,0 +1,246 @@
+＜基本構文＞goto\n＜引数＞@label：ラベルを指定\n\n＜詳細＞指定したラベルにジャンプします。\ngosub（後述）と違い、行ったまま戻ってきません。\nまた、変数のスコープ（後述）が変化することもありません。
+＜基本構文＞gosub\n＜引数＞@sub：サブルーチンのラベルを指定\n\n＜詳細＞サブルーチンをコールします。呼び出し先でreturnを実行すると呼び出し元に戻ってその次の命令から実行する。\n例）\ngosub @sub ;サブルーチンジャンプする\n.\n.\n@sub\n;なんらかの処理\nreturn ;呼び出し元の次の命令へ戻る
+＜基本構文＞return\n＜引数＞なし\n\n＜詳細＞gosubやdefsubのサブルーチンを抜ける際に利用。\n※returnで引数にラベルを入れると、そのラベルに対して戻る（戻る場所を変更する）機能がある模様。\nただし、マニュアルにはその記載が見当たらない…？
+＜基本構文＞if\n＜構文＞if then else endif文\n\n＜詳細＞条件分岐を記述できます。\nVisualBasic等と同様、一行if文と複数行if文が使える。\nthenの後改行すれば複数行if文、改行しなければ一行if文になります。\nelseとelseifが使えます。\nスペースを空けず、elseifと書いて下さい（これで一単語です）。\n複数行if文の場合は、elseがある場合その後も改行し、if文の終わりにはend ifもしくはendifと書いて下さい。\n
+＜基本構文＞then\n＜構文＞if then else endif文\n\n＜詳細＞条件分岐を記述できます。\nVisualBasic等と同様、一行if文と複数行if文が使える。\nthenの後改行すれば複数行if文、改行しなければ一行if文になります。\nelseとelseifが使えます。\nスペースを空けず、elseifと書いて下さい（これで一単語です）。\n複数行if文の場合は、elseがある場合その後も改行し、if文の終わりにはend ifもしくはendifと書いて下さい。\n
+＜基本構文＞else\n＜構文＞if then else endif文\n\n＜詳細＞条件分岐を記述できます。\nVisualBasic等と同様、一行if文と複数行if文が使える。\nthenの後改行すれば複数行if文、改行しなければ一行if文になります。\nelseとelseifが使えます。\nスペースを空けず、elseifと書いて下さい（これで一単語です）。\n複数行if文の場合は、elseがある場合その後も改行し、if文の終わりにはend ifもしくはendifと書いて下さい。\n
+＜基本構文＞endif\n＜構文＞if then else endif文\n\n＜詳細＞条件分岐を記述できます。\nVisualBasic等と同様、一行if文と複数行if文が使える。\nthenの後改行すれば複数行if文、改行しなければ一行if文になります。\nelseとelseifが使えます。\nスペースを空けず、elseifと書いて下さい（これで一単語です）。\n複数行if文の場合は、elseがある場合その後も改行し、if文の終わりにはend ifもしくはendifと書いて下さい。\n
+＜基本構文＞for\n＜構文＞for next文\n\n＜詳細＞変数を増やしながら（もしくは減らしながら）ループを実行します。\nfor 変数=初期値 to 終了値 (step 増分)でループ先頭、nextでループ終端を指定します。\n例）\nfor i=1 to 10\n  cprint i\nnext\nfor i=10 to 1 step -1\n  cprint i\nnext
+＜基本構文＞next\n＜構文＞for next文\n\n＜詳細＞変数を増やしながら（もしくは減らしながら）ループを実行します。\nfor 変数=初期値 to 終了値 (step 増分)でループ先頭、nextでループ終端を指定します。\n例）\nfor i=1 to 10\n  cprint i\nnext\nfor i=10 to 1 step -1\n  cprint i\nnext
+＜基本構文＞do\n＜構文＞do loop文\n\n＜詳細＞標準的なBASICにおけるdo loop文と同じです。\nただし、until文はありません。\n例）\n\ni=0\ndo while i<5\n  cprint i\n  i=i+1\nloop\ndo\n  cprint i\n  i=i-1\nloop while i>0\n;これは無限ループします。\ndo\n  cprint "!"\nloop
+＜基本構文＞roop\n＜構文＞do loop文\n\n＜詳細＞標準的なBASICにおけるdo loop文と同じです。\nただし、until文はありません。\n例）\n\ni=0\ndo while i<5\n  cprint i\n  i=i+1\nloop\ndo\n  cprint i\n  i=i-1\nloop while i>0\n;これは無限ループします。\ndo\n  cprint "!"\nloop
+＜基本構文＞exit\n＜用法＞do loopもしくはfor nextループを途中で抜ける\n\n＜詳細＞do loopもしくはfor nextループを途中で抜ける際に利用します。\nなお、スクリプト上のもっとも近いloopもしくはwhileの次へ抜けようとしますので、goto文でスクリプトの上でループの外に抜けてしまっていると正しく処理出来ません。\n処理の流れが読みにくくもなりますので、ループの中ではなるべくgoto文は使わない方がいいです。\n例）\n;5まででループが終わります。\nfor i=1 to 100\n  cprint i\n  if i==5 then exit\nnext\n
+＜基本構文＞continue\n＜用法＞do loopもしくはfor nextループの頭に戻る\n\n＜詳細＞do loopもしくはfor nextループの頭に戻る際に利用します。\nなお、これらはスクリプト上のもっとも近いloopもしくはwhileの次へ戻ろうとしますので、goto文でスクリプトの上でループの外に抜けてしまっていると正しく処理出来ません。\n処理の流れが読みにくくもなりますので、ループの中ではなるべくgoto文は使わない方がいいです。\n例）\n;5より小さいときはcontinueでループ頭に戻るため、値が表示されません。\nfor i=1 to 10\n  if i<5 then continue\n  cprint i\nnext\n
+＜基本構文＞defsub\n＜引数＞commandname：コマンド名（ラベルから@を取り除いたものを指定）\n　　　　paramlist：パラメータリスト（文字列）\n\n＜詳細＞ユーザー定義命令を作成します。commandnameが命令名になり、同じ名前のサブルーチンがその命令によってコールされます。\nparamlistは引数（パラメータ）のリストです。左から順番に第一引数、第二引数...です。引数がない場合は""にしてください。(C++で実装)\n＜TIPS：paramlistの文字指定＞\n"*"：以下の引数は全部型チェックをせずそのまま受け取る。数も制限無し \n"A"：どんな型でもひとつ受け取る。\n"N"：数値をひとつ受け取る。\n"S"：文字列をひとつ受け取る。シンボルやラベル名もこれで受け取ることが出来る。 \n"?"：その引数は、あってもなくてもよい。無い場合は、Luaではnil、BASICではシンボル#nilになる。?N ?S のように使う。\n"R"：vsetやvgetに使う変数名を受け取る。いわゆる「参照渡し」をするときに使う。\n"T"または"O"：テーブル記法を受け取る。結果は文字列になる。Lua側ではそれをbasic.decodetable(str)で処理する。\n"."：一つ前の引数が同じ型で任意の数続くことを表す。"S."や"N."のように使う。
+＜実行制御：命令＞quit\n＜引数＞なし\n\n＜詳細＞エンジンを終了しウィンドウを閉じます。\nBASICのプログラム終了は一般的にendですが、luaではif文の終端にendを使うため、BASICでうっかりそう書くと何も言わずプログラムが終了して戸惑うことが多いので、あえて違う命令にしました。
+＜実行制御：命令＞select\n＜引数＞"test1"：選択肢1に表示するテキスト\n　　　　@label1：選択肢1を選んだ際に遷移するラベル\n　　　　"test2"：選択肢2に表示するテキスト\n　　　　@label2：選択肢2を選んだ際に遷移するラベル...（以下、４つ以内で実装）\n\n＜詳細＞選択肢命令です。内部的にはラベル@selectbへのサブルーチンジャンプとして解釈されます。\n例）select "選択肢テキスト１",@label1,"選択肢テキスト２",@label2,"選択肢テキスト３",@label3
+＜実行制御：命令＞skip\n＜引数＞flag：スキップモード番号\n\n＜詳細＞スキップモードを設定します。0で通常状態、1でスキップモード、2でオートモードです。(system.luaで実装) 
+＜実行制御：命令＞trap\n＜引数＞@label：ラベルを指定\n\n＜詳細＞条件にあった入力があったときにlabelにジャンプします\n（この場合は自動でトラップモードが解除されます）。labelに#nilを指定するとトラップモードを解除します。\nスキップ条件は省略できます。\n省略した場合は全部指定、つまり"LRSEP"になります。\nL=左クリック R=右クリック S=スペースキー E=ENTERキー P=パッド入力、です。\n例）\ntrap @skip_demo\n.\n@skip_demo\ntrap #nil ; これがないと、クリックで飛ばさなかったときにトラップモードが解除されない。\ntrap @l_skip,"L" ; Lボタンをクリックしたときのみジャンプします。
+＜実行制御：命令＞param\n＜引数＞var1：パラメータの値１\n　　　　var2：パラメータの値２\n　　　　var3：パラメータの値３………defsubで定義されたparamlistの数だけ指定する\n\n＜詳細＞defsubで定義された命令において、渡されたパラメータを受け取ります。
+＜実行制御：命令＞vset\n＜引数＞vname：変数名の文字列\n　　　　value：代入する値\n\n＜詳細＞第一引数の文字列が示す変数名の変数に第二引数の値を代入します。defsub命令でparamlistが"R"のところは与えた変数名が文字列で入るので、そこへ代入するのに使います。
+＜実行制御：命令＞call\n＜引数＞@label：ラベルを指定\n　　　　"paramlist"：文字列のパラメータリスト（指定するフォーマットはdefsub参照）\n　　　　param1：第一引数\n　　　　param2：第二引数（以下、必要な数だけ指定）\n\n＜詳細＞defsub定義無しであたかも命令のようにサブルーチンを呼ぶ命令です。\ndefsubは二重定義出来ず、プログラムの頭の方で設定しておく必要があるため、パラメーターは渡したいけど一時的にしか使わないような処理は、こちらで書くと便利なことがあります。\n例）\ncall @lb,"SN","test",4\n.\n@lb\nparam %s,%n\nfor %i=0 to %n\n  cprint %s\nnext\nreturn
+＜実行制御：命令＞exec\n＜引数＞"basicsrc"：実行するBASICスクリプトの文字列\n\n＜詳細＞与えられた文字列をBASICスクリプトとして解釈し実行します。\n文字列変数も使えるので、場合によっては役立ちます。\n例）\nstr="beep"\nexec str ; beep命令が実行されます。
+＜実行制御：命令＞getlogtext\n＜引数＞num：num個前のバックログを取得\n　　　　tag変数：取得した表示文のタグを受け取る変数\n　　　　text変数：取得した表示文のテキストを受け取る変数\n\n＜詳細＞num個前のバックログを取得します。tagとtextを受け取る変数をそれぞれ指定します。なお、取得できない場合は#nilが戻ります。\n現状、ノベルモードでも、得られる情報は表示文単位です。
+＜実行制御：命令＞novelmode\n＜引数＞mode：モード番号\n\n＜詳細＞ノベルモードに設定します。mode=1でノベルモード、0でADVモード(0がデフォルト)です。\nノベルモードでは表示文ごとに自動で改ページされなくなるほか、いくつか専用の命令が使えるようになります。
+＜実行制御：関数＞getskip\n＜引数＞なし\n\n＜詳細＞現在のスキップモードを取得します。\n0が通常時、1がスキップ、2がオートモードです\n例）\nif getskip()==1 then return ; スキップモード時はリターン
+＜実行制御：関数＞logchk\n＜引数＞num：バックログ番号\n\n＜詳細＞バックログのデータが存在するかどうかチェックします。\nnum個前を調べます。\n例） if logchk(%n)==0 then ～ ;バックログを処理したいときにこんな感じで。
+＜実行制御：関数＞getconfig\n＜引数＞key：ラベルを指定\n\n＜詳細＞config.iniから値を取得します。keyもvalueも文字列です。詳しくはWindowsのiniファイルの仕様を調べて下さい。\n例） value=getconfig("chr_name")
+＜実行制御：関数＞vget\n＜引数＞vname：変数名\n\n＜詳細＞引数の文字列が示す変数名値を返します。\ndefsub命令でparamlistが"R"のところは与えた変数名が文字列で入るので、そこから値を取得するのに使います。\n例）defsub test,"R"\n.\nv=125\ntest v\n\n@test\nparam %s\ncprint vget(%s) ; 125が戻ります。\nreturn\n
+＜実行制御：関数＞getversion\n＜引数＞なし\n\n＜詳細＞NScripter2のバージョンを返します。
+＜実行制御（ノベルモード専用）：命令＞newpage\n＜引数＞なし\n\n＜詳細＞改ページを実行します。
+＜実行制御（ノベルモード専用）：命令＞gettextpos\n＜引数＞x変数：スプライト左上からの相対x座標\n　　　　y変数：スプライト左上からの相対y座標\n\n＜詳細＞TFORMAT SPFORMAT BFORMATのうち一番最後に実行した命令における次のテキスト行の先頭を戻します。\ntextbに渡るのはカーソル表示位置なので改行前ですが、こちらには改行後（次の行先頭）が渡ります。\nノベルゲームで選択肢を表示文の下に置きたいときや、FORMAT系で書き込んだ文字列の高さを知りたいときに使います。\nなお、得られる座標はスプライト左上からの相対座標です。
+＜実行制御（ノベルモード専用）：命令＞skippause\n＜引数＞mode：ラベルを指定\n\n＜詳細＞mode=1で、改ページではないクリック待ちをスキップするモードになります。\nmode=0で通常と同じです。このモードはシステムセーブデータにセーブされます。
+＜GUI処理：命令＞setscreen\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞shell\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞caption\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞setmouse\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞clearmouse\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞getclick\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞getmouse\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞doevents\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞sleep\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞clearmessage\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞okbox\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞yesnobox\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞input\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞resettimer\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞waittimer\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞time\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞beep\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞gbegin\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞gend\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞gblend\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞getpad\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：命令＞ggetsize\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：関数＞getscreen\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：関数＞getkey\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜GUI処理：関数＞gettimer\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞copen\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞cclose\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞ccaption\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞cprint\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞cwrite\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞clocate\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞cgetsize\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞csetsize\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞cgetcursor\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞csettext\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞cclear\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞ccolor\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：命令＞system\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：関数＞cread\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜コンソール処理：関数＞cinkey\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜フォント処理：命令＞font\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜フォント処理：命令＞fdelete\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞sp\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spdelete\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spdeletes\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spcell\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spmove\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spmovelt\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spvisible\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spz\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spfill\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spanimationreset\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spset\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spsetdelete\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spsetclear\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spsetz\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spsetvisible\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spformat\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spputtext\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞getscreenshot\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞btnclear\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞btn\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞btnexec\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞btnstr\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞print\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞wait\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞click\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞lrclick\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞spdraw\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：命令＞getspinfo\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：関数＞getspcell\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜スプライト／ボタン処理：関数＞sphitcheck\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tcreate\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tload\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tfromb\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tdelete\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tdraw\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tdrawlt\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tfill\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tfrect\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tgetsize\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tsave\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tbegin\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tend\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：命令＞tformat\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜テクスチャ処理：関数＞tisplaying\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bcreate\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bload\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bfromt\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bdelete\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bsave\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bfill\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bfrect\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞breverse\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bresize\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞btrim\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bjoinx\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bjoiny\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bgetsize\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bdup\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bgradation\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bnega\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bmonotone\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bbegin\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bend\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜ビットマップ処理：命令＞bformat\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜動画処理：命令＞movie\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜動画処理：命令＞mreset\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞bgmplay\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞bgmplayonce\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞bgmstop\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞bgmfadeout\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞bgmvolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞seplay\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞seloop\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sestop\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sestopall\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sefadeout\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sevolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sechvolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞voiceplay\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞voicewait\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞voicevolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞bgvplay\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞bgvfadeout\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞bgvvolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sound\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sdelete\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞splay\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sstop\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞svolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞span\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sfadeout\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞spause\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：命令＞sresume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：関数＞getbgmvolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：関数＞getsevolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：関数＞getvoicevolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：関数＞getbgvvolume\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜音声処理：関数＞sisplaying\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜演出処理：命令＞transition\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜演出処理：命令＞quake\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞save\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞load\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞savepoint\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞savemode\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞filetime\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞savetime\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞linsert\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞finsert\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：命令＞strsave\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：関数＞lchk\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：関数＞schk\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：関数＞tchk\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：関数＞filechk\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：関数＞fchk\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜セーブ／ロード／ファイル処理：関数＞strload\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：命令＞split\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：命令＞splita\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：命令＞vclear\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：命令＞vcopy\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞isdef\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞num\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞str\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞asc\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞chr\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞strf\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞type\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞replace\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞left\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞right\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞mid\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞trim\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞ltrim\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞rtrim\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞len\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞zlen\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞lcase\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞ucase\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞zenkaku\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞join\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞joina\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞search\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞regex_replace\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞vlen\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞vubound\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜変数の変換・配列・文字列処理：関数＞vlbound\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：命令＞randomseed\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞pi\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞sin\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞sinh\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞cos\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞cosh\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞tan\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞tanh\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞asin\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞acos\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞atan\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞atan2\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞random\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞exp\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞log\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞log10\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞rad\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞deg\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞sqrt\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞floor\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞ceil\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞abs\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜数学処理：関数＞sgn\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜その他処理：命令＞lua\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜その他処理：命令＞luafile\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜その他処理：命令＞setclipboard\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
+＜その他処理：関数＞luaf\n＜引数＞@label：ラベルを指定\n\n＜詳細＞
